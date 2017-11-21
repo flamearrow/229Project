@@ -1,0 +1,11 @@
+*) run the existing alrorithms once
+	*) figure out how to run a small portion of testing data
+		*) how data is read and split
+
+*) convert our data into training data format
+
+*) generate training data using pickle: https://www.python.org/doc/2.5/lib/module-cPickle.html
+
+https://docs.python.org/3/library/pickle.html
+
+*) this ismodels the paper for the cnn archetecture: https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf

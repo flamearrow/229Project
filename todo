@@ -10,5 +10,19 @@
 *) this is models the paper for the cnn archetecture: https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf -done
 
 
-*) figure out how to terminate from gradient descent
+*) figure out how to terminate from gradient descent -done
+    *) can set max step
+
 *) figure out how to use tensor board
+
+*) learn this shit learningtensorflow.com
+
+*) streamline the process:
+    *) 1000 picture-label as training data, 50 picture-label as test data
+    *) convert these into training_data and test_data binary batches
+    *) run the algorithm for X steps for training_data batch
+    *) evaluate performance
+
+*) stitch output back to a midi file
+
+*) search for monotone midis like flute

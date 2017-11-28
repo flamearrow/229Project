@@ -52,7 +52,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--batch_size', type=int, default=128,
                     help='Number of images to process in a batch.')
 
-parser.add_argument('--data_dir', type=str, default='/tmp/cifar10_data',
+parser.add_argument('--data_dir', type=str, default='/Users/flamearrow/stanford/cs229/testData/cifar10_data',
                     help='Path to the CIFAR-10 data directory.')
 
 parser.add_argument('--use_fp16', type=bool, default=False,
@@ -144,7 +144,7 @@ def _variable_with_weight_decay(name, shape, stddev, wd):
   return var
 
 
-def distorted_inputs():
+def distorted_inputs(custom_data_dir=None):
   """Construct distorted input for CIFAR training using the Reader ops.
 
   Returns:
@@ -156,9 +156,15 @@ def distorted_inputs():
   """
   if not FLAGS.data_dir:
     raise ValueError('Please supply a data_dir')
-  data_dir = os.path.join(FLAGS.data_dir, 'cifar-10-batches-bin')
+  auto_detect_files = False
+  if custom_data_dir:
+    data_dir = custom_data_dir
+    auto_detect_files = True
+  else:
+    data_dir = os.path.join(FLAGS.data_dir, 'cifar-10-batches-bin')
   images, labels = cifar10_input.distorted_inputs(data_dir=data_dir,
-                                                  batch_size=FLAGS.batch_size)
+                                                  batch_size=FLAGS.batch_size,
+                                                  auto_detect_files=auto_detect_files)
   if FLAGS.use_fp16:
     images = tf.cast(images, tf.float16)
     labels = tf.cast(labels, tf.float16)
@@ -190,7 +196,7 @@ def inputs(eval_data):
   return images, labels
 
 
-def inference(images):
+def inference(images, num_classes=NUM_CLASSES):
   """Build the CIFAR-10 model.
 
   Args:
@@ -266,9 +272,9 @@ def inference(images):
   # tf.nn.sparse_softmax_cross_entropy_with_logits accepts the unscaled logits
   # and performs the softmax internally for efficiency.
   with tf.variable_scope('softmax_linear') as scope:
-    weights = _variable_with_weight_decay('weights', [192, NUM_CLASSES],
+    weights = _variable_with_weight_decay('weights', [192, num_classes],
                                           stddev=1/192.0, wd=0.0)
-    biases = _variable_on_cpu('biases', [NUM_CLASSES],
+    biases = _variable_on_cpu('biases', [num_classes],
                               tf.constant_initializer(0.0))
     softmax_linear = tf.add(tf.matmul(local4, weights), biases, name=scope.name)
     _activation_summary(softmax_linear)

@@ -20,6 +20,7 @@ from __future__ import division
 from __future__ import print_function
 
 import os
+import glob
 
 from six.moves import xrange  # pylint: disable=redefined-builtin
 import tensorflow as tf
@@ -82,6 +83,8 @@ def read_cifar10(filename_queue):
   # Convert from a string to a vector of uint8 that is record_bytes long.
   record_bytes = tf.decode_raw(value, tf.uint8)
 
+  #ccen: First byte is label(uint8), following 3 * 32 * 32 (int32) represents color of each pixel
+
   # The first bytes represent the label, which we convert from uint8->int32.
   result.label = tf.cast(
       tf.strided_slice(record_bytes, [0], [label_bytes]), tf.int32)
@@ -137,7 +140,7 @@ def _generate_image_and_label_batch(image, label, min_queue_examples,
   return images, tf.reshape(label_batch, [batch_size])
 
 
-def distorted_inputs(data_dir, batch_size):
+def distorted_inputs(data_dir, batch_size, auto_detect_files=False):
   """Construct distorted input for CIFAR training using the Reader ops.
 
   Args:
@@ -148,8 +151,12 @@ def distorted_inputs(data_dir, batch_size):
     images: Images. 4D tensor of [batch_size, IMAGE_SIZE, IMAGE_SIZE, 3] size.
     labels: Labels. 1D tensor of [batch_size] size.
   """
-  filenames = [os.path.join(data_dir, 'data_batch_%d.bin' % i)
-               for i in xrange(1, 6)]
+  filenames = None
+  if auto_detect_files:
+      filenames = glob.glob(data_dir + "/*")
+  else:
+      filenames = [os.path.join(data_dir, 'data_batch_%d.bin' % i)
+                   for i in xrange(1, 6)]
   for f in filenames:
     if not tf.gfile.Exists(f):
       raise ValueError('Failed to find file: ' + f)

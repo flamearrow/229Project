@@ -1,11 +1,14 @@
-*) run the existing alrorithms once
-	*) figure out how to run a small portion of testing data
-		*) how data is read and split
+*) run the existing alrorithms once -done
+	*) figure out how to run a small portion of testing data -done
+		*) how data is read and split -done
 
-*) convert our data into training data format
+*) convert our data into training data format -done
 
-*) generate training data using pickle: https://www.python.org/doc/2.5/lib/module-cPickle.html
+*) generate training data using pickle: https://www.python.org/doc/2.5/lib/module-cPickle.html -no need
+    *) https://docs.python.org/3/library/pickle.html -done
 
-https://docs.python.org/3/library/pickle.html
+*) this is models the paper for the cnn archetecture: https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf -done
 
-*) this ismodels the paper for the cnn archetecture: https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf
+
+*) figure out how to terminate from gradient descent
+*) figure out how to use tensor board

@@ -171,11 +171,12 @@ def distorted_inputs(custom_data_dir=None):
   return images, labels
 
 
-def inputs(eval_data):
+def inputs(eval_data, custom_data_dir=None):
   """Construct input for CIFAR evaluation using the Reader ops.
 
   Args:
     eval_data: bool, indicating if one should use the train or eval data set.
+    custom_data_dir: override the dir to read test data
 
   Returns:
     images: Images. 4D tensor of [batch_size, IMAGE_SIZE, IMAGE_SIZE, 3] size.
@@ -186,7 +187,11 @@ def inputs(eval_data):
   """
   if not FLAGS.data_dir:
     raise ValueError('Please supply a data_dir')
-  data_dir = os.path.join(FLAGS.data_dir, 'cifar-10-batches-bin')
+  data_dir = None
+  if custom_data_dir:
+    data_dir = custom_data_dir
+  else:
+    data_dir = os.path.join(FLAGS.data_dir, 'cifar-10-batches-bin')
   images, labels = cifar10_input.inputs(eval_data=eval_data,
                                         data_dir=data_dir,
                                         batch_size=FLAGS.batch_size)

@@ -18,7 +18,7 @@
 *) learn this shit learningtensorflow.com
 
 *) streamline the process:
-    *) 1000 picture-label as training data, 50 picture-label as test data
+    *) 880 picture-label as training data, 50 picture-label as test data
     *) convert these into training_data and test_data binary batches
     *) run the algorithm for X steps for training_data batch
     *) evaluate performance
@@ -26,3 +26,5 @@
 *) stitch output back to a midi file
 
 *) search for monotone midis like flute
+
+*) how to select training data

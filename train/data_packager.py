@@ -14,7 +14,7 @@ NOTE_START = 22
 NOTE_END = 108
 
 TRAIN_OUT_FILE = "train_out"
-TEST_OUT_FILE = "test_out"
+TEST_OUT_FILE = "test_batch.bin"
 
 
 # package data from dir
@@ -58,7 +58,7 @@ def package_data_with_label_in_file_name(sample_data_dir):
     for f in "PMF":
         for note in range(NOTE_START, NOTE_END + 1):
             for sample_index in range(1, SAMPLE_COUNT + 1):
-                file_name = str(sample_data_dir + "/" + f + "_S0_M" + str(note) + "_" + str(sample_index) + ".jpg")
+                file_name = str(sample_data_dir + "/" + f + "_S1_M" + str(note) + "_" + str(sample_index) + ".jpg")
                 if os.path.isfile(file_name):
                     # write to train
                     if sample_index <= TRAIN_COUNT:

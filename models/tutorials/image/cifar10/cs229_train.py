@@ -32,7 +32,7 @@ parser = cifar10.parser
 parser.add_argument('--train_dir', type=str, default='./train',
                     help='Directory where to write event logs and checkpoint.')
 
-parser.add_argument('--max_steps', type=int, default=100,
+parser.add_argument('--max_steps', type=int, default=100000,
                     help='Number of batches to run.')
 
 # parser.add_argument('--max_steps', type=int, default=1000000,

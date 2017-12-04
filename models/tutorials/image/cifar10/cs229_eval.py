@@ -123,7 +123,7 @@ def evaluate():
   with tf.Graph().as_default() as g:
     # ccen: eval_data should be true to use train_data/test_batch.bin to evaluate
     eval_data = FLAGS.eval_data == 'test'
-    images, labels = cifar10.inputs(eval_data=eval_data, custom_data_dir="./train_data")
+    images, labels = cifar10.inputs(eval_data=eval_data, custom_data_dir="./test_data")
 
     # Build a Graph that computes the logits predictions from the
     # inference model.

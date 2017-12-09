@@ -32,7 +32,7 @@ parser = cifar10.parser
 parser.add_argument('--train_dir', type=str, default='./train',
                     help='Directory where to write event logs and checkpoint.')
 
-parser.add_argument('--max_steps', type=int, default=100000,
+parser.add_argument('--max_steps', type=int, default=5000,
                     help='Number of batches to run.')
 
 # parser.add_argument('--max_steps', type=int, default=1000000,
@@ -92,6 +92,9 @@ def train():
                         'sec/batch)')
           print (format_str % (datetime.now(), self._step, loss_value,
                                examples_per_sec, sec_per_batch))
+
+          # ccen: add loss to tensor board
+          tf.summary.scalar("loss", loss_value)
 
     with tf.train.MonitoredTrainingSession(
         checkpoint_dir=FLAGS.train_dir,

@@ -28,3 +28,34 @@
 *) search for monotone midis like flute
 
 *) how to select training data
+
+*) projects
+    *) three datasets(all use S0 without pedal)
+       *) fft - 40 * 3 samples per note
+       *) constant Q - 40 * 3 samples per note
+       *) constant Q - 80 * 3 samples per note
+       *) test/train - 4:1 (32/8 for 40 samples, 64/16 for 80 samples)
+    *) plotting data:
+       *) loss - time
+       *) precision at certain loss
+    *) try simplify the model, delete local layer
+
+    *) in cs229_run, for top_k_op, try change it to some op to return actual predication
+    *) train shit in sampleData, this is constantQ with higher frequency, nwo we have 80 samples per note
+
+    *) model runner: cs229_run.py:
+        *) does 2 things
+            1) package raw datas into a binary data(output_data_packager.package_data_with_label_file())
+            2) apply model(checkpoints) to the binary data to output corresponding labels
+
+        *) copy data into these two folders:
+            *) RAW_DATA_DIR: with unlabeled data pictures: 1.jpg, 2.jpg, ...
+            *) --checkpoint_dir: data with checkpoint files
+
+        *) Note for these two parameters:
+            *) --num_examples: needs to be a multipy of 128, otherwise the programe will loop through the start of file to make sure it's a multipy of 128
+                *) means you need to have 128 /256 ... jpg fileds, also change the file count to --num_examples
+            *) PACKAGED_DATA_DIR: generated binary files for 1.jpg, 2.jpg... don't change this
+
+        *) output: OUT_LABELS_FILE
+            *) a file with corresponding label for 1.jpg, 2.jpg... on each line

@@ -10289,6 +10289,57 @@ node {
   }
 }
 node {
+  name: "total_loss_1/tags"
+  op: "Const"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_STRING
+        tensor_shape {
+        }
+        string_val: "total_loss_1"
+      }
+    }
+  }
+}
+node {
+  name: "total_loss_1"
+  op: "ScalarSummary"
+  input: "total_loss_1/tags"
+  input: "total_loss"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+        }
+      }
+    }
+  }
+}
+node {
   name: "conv1/weight_loss/avg/Initializer/zeros"
   op: "Const"
   attr {
@@ -13184,7 +13235,7 @@ node {
   }
 }
 node {
-  name: "total_loss_1/tags"
+  name: "total_loss_2/tags"
   op: "Const"
   attr {
     key: "_output_shapes"
@@ -13208,15 +13259,15 @@ node {
         dtype: DT_STRING
         tensor_shape {
         }
-        string_val: "total_loss_1"
+        string_val: "total_loss_2"
       }
     }
   }
 }
 node {
-  name: "total_loss_1"
+  name: "total_loss_2"
   op: "ScalarSummary"
-  input: "total_loss_1/tags"
+  input: "total_loss_2/tags"
   input: "total_loss/avg/read"
   attr {
     key: "T"
@@ -34480,6 +34531,7 @@ node {
   input: "softmax_linear/softmax_linear/softmax_linear/activations"
   input: "softmax_linear/softmax_linear/softmax_linear/sparsity"
   input: "learning_rate"
+  input: "total_loss_1"
   input: "conv1/weight_loss__raw_"
   input: "conv1/weight_loss_1"
   input: "conv2/weight_loss__raw_"
@@ -34493,7 +34545,7 @@ node {
   input: "cross_entropy__raw_"
   input: "cross_entropy_1"
   input: "total_loss__raw_"
-  input: "total_loss_1"
+  input: "total_loss_2"
   input: "conv1/weights_1"
   input: "conv1/biases_1"
   input: "conv2/weights_1"
@@ -34517,7 +34569,7 @@ node {
   attr {
     key: "N"
     value {
-      i: 48
+      i: 49
     }
   }
   attr {
@@ -34585,7 +34637,7 @@ node {
         dtype: DT_STRING
         tensor_shape {
         }
-        string_val: "_temp_6d39f13af30f4d5590a6051f4c4de099/part"
+        string_val: "_temp_139ce6ef31fc4cb2aabc8d3e238e2d2c/part"
       }
     }
   }

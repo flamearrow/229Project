@@ -363,6 +363,8 @@ def train(total_loss, global_step):
                                   staircase=True)
   tf.summary.scalar('learning_rate', lr)
 
+  tf.summary.scalar('total_loss', total_loss)
+
   # Generate moving averages of all losses and associated summaries.
   loss_averages_op = _add_loss_summaries(total_loss)
 

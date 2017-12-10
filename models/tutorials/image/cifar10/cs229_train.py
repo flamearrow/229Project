@@ -93,8 +93,6 @@ def train():
           print (format_str % (datetime.now(), self._step, loss_value,
                                examples_per_sec, sec_per_batch))
 
-          # ccen: add loss to tensor board
-          tf.summary.scalar("loss", loss_value)
 
     with tf.train.MonitoredTrainingSession(
         checkpoint_dir=FLAGS.train_dir,

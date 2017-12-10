@@ -57,7 +57,10 @@ parser.add_argument('--eval_interval_secs', type=int, default=60*5,
                     help='How often to run the eval.')
 
 # note: this needs to be a multiply of 128! change it to raw data file count
-parser.add_argument('--num_examples', type=int, default=1280,
+# parser.add_argument('--num_examples', type=int, default=1280,
+#                     help='Number of examples to run.')
+
+parser.add_argument('--num_examples', type=int, default=4,
                     help='Number of examples to run.')
 
 parser.add_argument('--run_once', type=bool, default=True,

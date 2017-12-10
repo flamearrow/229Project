@@ -59,3 +59,26 @@
 
         *) output: OUT_LABELS_FILE
             *) a file with corresponding label for 1.jpg, 2.jpg... on each line
+
+        *) change:
+            *) batch_size to 1
+            *) num_preprocess_threads to 1
+            *) num_examples
+
+    *) loss in tensorboard -done
+
+    *) fixed checkpoint size - calculate accuracy
+
+    *) run different model
+        *) change preprocessing
+            *) don't shrink to 24*24, use original 32*32
+            *) don't change brightness/contrast
+
+        *) use less layers
+            *) use only conv1, no conv2
+            *) remove local3 or local4
+
+        *) cifar10_input:
+            *) change, see if learning rate decays
+                # NUM_EXAMPLES_PER_EPOCH_FOR_TRAIN = 50000
+                # NUM_EXAMPLES_PER_EPOCH_FOR_EVAL = 10000

@@ -15,7 +15,7 @@
 
 *) figure out how to use tensor board
 
-*) learn this shit learningtensorflow.com
+*) learn this stuff learningtensorflow.com
 
 *) streamline the process:
     *) 880 picture-label as training data, 50 picture-label as test data
@@ -41,7 +41,7 @@
     *) try simplify the model, delete local layer
 
     *) in cs229_run, for top_k_op, try change it to some op to return actual predication
-    *) train shit in sampleData, this is constantQ with higher frequency, nwo we have 80 samples per note
+    *) train stuff in sampleData, this is constantQ with higher frequency, nwo we have 80 samples per note
 
     *) model runner: cs229_run.py:
         *) does 2 things
@@ -71,14 +71,21 @@
 
     *) run different model
         *) change preprocessing
-            *) don't shrink to 24*24, use original 32*32
-            *) don't change brightness/contrast
+            *) don't shrink to 24*24, use original 32*32 -done
+            *) don't flip image, don't change brightness or contrast -done
 
         *) use less layers
             *) use only conv1, no conv2
             *) remove local3 or local4
 
         *) cifar10_input:
-            *) change, see if learning rate decays
+            *) change decay rate -done
+                *) our test samples: 128*48*30 = 15360
+                # NUM_EPOCHS_PER_DECAY = 350
+                    *) changed to 30
                 # NUM_EXAMPLES_PER_EPOCH_FOR_TRAIN = 50000
+                    *) changed to 5000 to expidite weight decay
+
+                 decay step = 5000/128 * 30 = 1170
+                *) NUM_EPOCHS_PER_DECAY: 350 to 30
                 # NUM_EXAMPLES_PER_EPOCH_FOR_EVAL = 10000
